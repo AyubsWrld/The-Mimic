@@ -1,12 +1,11 @@
-CC := gcc 
-CFLAGS := -Wall -std=c11 
-LDFLAGS := -lm -lc -lncurses 
+CC := gcc
+CFLAGS := -std=c11 -Wall -lncurses
 
-my_program : main.c 
-	$(CC) $(CFLAGS) $(LDFLAGS)  $^  -o $@ 
+test: splash.c levels.c main.c
+	$(CC) -o $(@) $(CFLAGS) $^
 
-.PHONY: clean 
+.PHONY: clean
 
-clean : 
-	rm -f my_program
+clean:
+	rm -f *.o test
 
