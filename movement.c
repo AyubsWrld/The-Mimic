@@ -1,39 +1,66 @@
 #include <stdio.h>
 #include <ncurses.h>
-#include "main.h"
+#include <stdlib.h> 
 
-int move(){
-      
-    keypad(stdscr, TRUE)
+int checkBounds(int x, int y);
 
-    int x = 10;
-    int y = 10;
+void moveP() {
+    int x = 19; // Starting Location
+    int y = 8;
+   
+    int *p = malloc(sizeof(int)); 
+
+    keypad(stdscr, TRUE); // Initialized the keyboard for getting input 
 
     refresh();
-    
-    while(true){
+    char key;
+
+    while ((key = getch()) != 'q') {
+        refresh();
         int key = getch();
 
-        if (key = KEY_UP){
-            y = y - 1;
-            break;       
-        }
-        if else ( = KEY_DOWN){
-            y = y + 1;
-            break;        
+        if (key == KEY_UP) {  // Move Up
+            if (checkBounds(x,y-1) == 1){
+                mvaddch(y,x,' ');
+                y = y - 1;
+                 
+            }
 
+        } else if (key == KEY_DOWN ) {  // Move Down
+            if (checkBounds(x, y + 1) == 1){
+                mvaddch(y,x,' ');
+                y = y + 1;
+                
+            }
+
+        } else if (key == KEY_RIGHT) {  // Move Right
+            if (checkBounds(x + 1,y) == 1){
+                mvaddch(y,x,' ');
+                x = x + 1;
+                 
+            }
+
+        } else if (key == KEY_LEFT) { // Move Left
+           if (checkBounds(x - 1,y) == 1){
+                mvaddch(y,x,' ');
+                x = x - 1;
+                    
+            }
         }
-        if else (ch = KEY_RIGHT){
-            x = x + 1;
-            break;        
-        }
-        if else (ch = KEY_LEFT){
-            x = x - 1;
-            break;
-        }
-        mvaddch(y,x,"X")
-        
+        mvaddch(y, x, 'X');
+        refresh();
+        getch();
     }
+    
+    free(p);
+}
 
+int checkBounds(int x, int y) {
+    int character = mvinch(y,x);
+    if (character == '/' || character == '\\' || character == '_' || character == '-') {
+        return 0;
+    } else {
+        return 1;
+    }
+}
 
-}  
