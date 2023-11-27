@@ -23,28 +23,24 @@ void moveP() {
             if (checkBounds(x,y-1) == 1){
                 mvaddch(y,x,' ');
                 y = y - 1;
-                 
             }
 
         } else if (key == KEY_DOWN ) {  // Move Down
             if (checkBounds(x, y + 1) == 1){
                 mvaddch(y,x,' ');
                 y = y + 1;
-                
             }
 
         } else if (key == KEY_RIGHT) {  // Move Right
             if (checkBounds(x + 1,y) == 1){
                 mvaddch(y,x,' ');
                 x = x + 1;
-                 
             }
 
         } else if (key == KEY_LEFT) { // Move Left
            if (checkBounds(x - 1,y) == 1){
                 mvaddch(y,x,' ');
                 x = x - 1;
-                    
             }
         }
         mvaddch(y, x, 'X');
@@ -63,4 +59,3 @@ int checkBounds(int x, int y) {
         return 1;
     }
 }
-
