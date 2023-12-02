@@ -17,19 +17,9 @@ int main() {
     display_level(2);
     display_level(3);
 
-
-
-
-
-
-    // Add more levels as needed
-    // display_level(2);
-    // display_level(3);
-
     getch(); // Wait for a key press before exiting
 
     endwin(); // Clean up and close the ncurses library
 
     return 0;
 }
-

@@ -30,4 +30,3 @@ void splash_screen() {
         refresh(); // Refresh the screen
         getch();   // Wait for a key press
 }
-
