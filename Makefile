@@ -9,3 +9,4 @@ my_program : main.c splash.c level1.c level2.c level3.c displayLevels.c movement
 
 clean : 
 	rm -f my_program
+
