@@ -40,7 +40,7 @@ void moveP(int startPos, int x , int y ) {
 
         if (key == KEY_UP) {  // Move Up
             if (checkBounds(*ptrX,*ptrY - 1) == 1){ // Checks if we are in bounds
-                if (checkObstacle(*ptrX,*ptrY-1)== 1){ // Checks for an obstacle trigger
+                if (checkObstacle(startPos,*ptrX,*ptrY-1)== 1){ // Checks for an obstacle trigger
                     switch(OBSX) { 
                         case 47 : 
                         for (int i = 0 ; i < 4; i++){ 
@@ -56,6 +56,7 @@ void moveP(int startPos, int x , int y ) {
                         for (int i = 0 ; i < 4; i++){
                             mvprintw((*ptrOBSY) + i,*ptrOBSX," ");
                         }
+                       
                         break ;
                     }
                    
@@ -66,7 +67,7 @@ void moveP(int startPos, int x , int y ) {
 
         } else if (key == KEY_DOWN ) {  // Move Down
             if (checkBounds(*ptrX, *ptrY + 1) == 1){
-                if (checkObstacle(*ptrX,*ptrY + 1)== 1){ 
+                if (checkObstacle(startPos,*ptrX,*ptrY + 1)== 1){ 
                     switch(OBSX) { 
                         case 47 : 
                             for (int i = 0 ; i < 4; i++){ 
@@ -81,6 +82,8 @@ void moveP(int startPos, int x , int y ) {
                             for (int i = 0 ; i < 4; i++){
                                 mvprintw((*ptrOBSY) + i,*ptrOBSX," ");
                             }
+
+
                             break ;
                     }   
                 }
@@ -90,7 +93,7 @@ void moveP(int startPos, int x , int y ) {
 
         } else if (key == KEY_RIGHT) {  // Move Right
             if (checkBounds(*ptrX + 1,*ptrY) == 1){
-                if (checkObstacle(*ptrX + 1,*ptrY)== 1){
+                if (checkObstacle(startPos,*ptrX + 1,*ptrY)== 1){
                     switch(OBSX) { 
                         case 47 : 
                             for (int i = 0 ; i < 4; i++){ 
@@ -105,6 +108,8 @@ void moveP(int startPos, int x , int y ) {
                             for (int i = 0 ; i < 4; i++){
                                 mvprintw((*ptrOBSY) + i,*ptrOBSX," ");
                             }
+
+
                             break ;           
                     }
                 }
@@ -114,7 +119,7 @@ void moveP(int startPos, int x , int y ) {
             }
         } else if (key == KEY_LEFT) {  // Move Right
             if (checkBounds(*ptrX - 1,*ptrY) == 1){ 
-                if (checkObstacle(*ptrX - 1,*ptrY)== 1){
+                if (checkObstacle(startPos,*ptrX - 1,*ptrY)== 1){
                     switch(OBSX) { 
                         case 47 : 
                             for (int i = 0 ; i < 4; i++){ 
@@ -130,6 +135,7 @@ void moveP(int startPos, int x , int y ) {
                             for (int i = 0 ; i < 4; i++){
                                 mvprintw((*ptrOBSY) + i,*ptrOBSX," ");
                             }
+
                             break ;       
                     }     
                 }
@@ -138,40 +144,7 @@ void moveP(int startPos, int x , int y ) {
             }
         }
         mvaddch(*ptrY, *ptrX, 'X');
+        
         refresh();    
-    }
-}
-
-int checkBounds(int x, int y) { // Checks if player will hit a wall
-    int character = mvinch(y,x);
-    if (character == '/' || character == '\\' || character == '_' || character == '-' || character == '|') {
-        return 0;
-    } else {
-        return 1;
-    }
-}
-
-int checkObstacle( int x , int y ) { // Checks for triggers
-    int character = mvinch(y,x);
-    if (character == '*') { // Opens up walls in the way
-        return 1 ;  
-    }
-    else if(character == '$') { // Different end level triggers tot move to next level
-        clear() ; 
-        display_level2(2) ; 
-        return 0;
-    }
-    else if(character == '!') { 
-        clear() ; 
-        display_level3(2) ; 
-        return 0;
-    }
-    else if(character == '#') { // Reached the end of the level -> Takes user to an end screen
-        clear() ; 
-        endScr();
-        return 0;
-    }
-    else { 
-        return 0 ; 
     }
 }

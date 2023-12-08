@@ -35,6 +35,7 @@ void display_level1(int state) {
         mvprintw(y + 25 + i, 0, "\n");
     }
 
+
     mvprintw(y + 29, 0, "                                                .-.   .-..-. .-..----. .----.                            \n");
     mvprintw(y + 30, 0, "                                                | |   | || | | || |_  ' {__                                 \n");
     mvprintw(y + 31, 0, "                                                | `--.| |\\ \\_/ /| {__ .-._} }                              \n");
